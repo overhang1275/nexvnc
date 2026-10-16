@@ -1,0 +1,79 @@
+{
+  "name": "nexvnc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A modern, open-source VNC client built with Electron.",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "node server/index.js",
+    "start": "npm run build && electron .",
+    "pack": "npm run build && electron-builder --dir",
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "dist:mac": "npm run build && electron-builder --mac dmg",
+    "dist:linux": "npm run build && electron-builder --linux AppImage deb"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@novnc/novnc": "^1.6.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^42.0.0",
+    "electron-builder": "^26.0.0",
+    "vite": "^6.1.0"
+  },
+  "build": {
+    "appId": "io.github.overhang1275.nexvnc",
+    "productName": "NexVNC",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "server/**/*",
+      "package.json",
+      "LICENSE",
+      "assets/**/*",
+      "README.md"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network",
+      "maintainer": "overhang1275"
+    },
+    "icon": "assets/icon.png",
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "author": "overhang1275",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/overhang1275/nexvnc.git"
+  },
+  "homepage": "https://opencore.dpdns.org",
+  "bugs": {
+    "url": "https://github.com/overhang1275/nexvnc/issues"
+  }
+}

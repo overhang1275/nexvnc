@@ -1,0 +1,66 @@
+# Dependencies and generated output
+node_modules/
+dist/
+out/
+build/
+release/
+coverage/
+playwright-report/
+test-results/
+*.log
+logs/
+*.tsbuildinfo
+*.tmp
+*.bak
+.cache/
+.npm/
+.vite/
+
+# Credentials, environment files and machine-specific configuration
+.env
+.env.*
+.npmrc
+.aws/
+.ssh/
+credentials*
+secrets*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Agent configuration and private development material
+.codex/
+.agents/
+.claude/
+.cursor/
+.playwright-cli/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+DESIGN.md
+THIRD_PARTY_NOTICES.md
+design-resources/
+docs/
+scripts/
+tests/
+playwright.config.js
+.github/
+
+# Other local runtimes
+.venv/
+venv/
+__pycache__/
+*.py[cod]
