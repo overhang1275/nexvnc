@@ -120,7 +120,23 @@ Vendor-specific cloud connections and account-based relay services are not imple
 
 The WebSocket-to-TCP bridge listens only on `127.0.0.1` and checks request origins with single-use connection tickets. It does **not** automatically encrypt the connection to the remote VNC server.
 
-Passwords are not saved in the connection library. Saved hostnames and addresses are local application data and should still be treated as private.
+### Password handling
+
+NexVNC does not persist server passwords to disk. The connection library stores only connection metadata and preferences, so the current version has no stored-password vault to encrypt. Saved hostnames and addresses remain private local application data.
+
+Passwords are passed to noVNC for authentication and may remain in process memory during the session. This does not guarantee protection against malware, memory inspection, crash dumps or a compromised operating system. Secure erasure of JavaScript strings is not guaranteed.
+
+A future remember-password feature must use operating-system-backed protection, such as Electron's [safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage), and refuse to save credentials when effective protection is unavailable. In particular, Linux's `basic_text` backend must not be treated as secure storage. This feature is **not currently implemented**.
+
+### Transport encryption
+
+Password storage and network encryption are separate concerns. The current application does not enforce end-to-end encryption to every VNC server. Classic VNC authentication does not encrypt the desktop session; see the [RFB protocol security considerations](https://www.rfc-editor.org/rfc/rfc6143.html#section-9).
+
+For professional use, protect the remote connection with a properly configured VPN, SSH tunnel or a compatible encrypted VNC security method. The application does not currently verify or enforce that an external VPN or tunnel is in use.
+
+### Professional deployment status
+
+NexVNC is an early-stage project and has not undergone an independent security audit. Local functional checks are not a security certification. Before deploying it in a professional environment, perform a security review and validate the selected VNC server, authentication method, transport protection and target operating systems. The absence of saved passwords does not make the entire application secure by itself.
 
 ## Troubleshooting
 
